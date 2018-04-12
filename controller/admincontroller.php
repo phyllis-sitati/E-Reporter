@@ -5,8 +5,6 @@
 //Including necessary files
  require_once('../settings/validate.php');
  require_once('../classes/adminfunctions.php');
- //Creating an object for the administrator class
- $adUser= new AdminUser;
 
  //Function DisplayRegistered voters
  function displayRegistered()
@@ -37,15 +35,18 @@
                     </div>';
  }
  //Function that creates a new admin
-function createAdmin()
+function createAdmn()
 {
+	 
 	//Variable
-	$uname=$pwd=$fname=$mname=$sname=$mail=$phone_no='';
+	//$uname=$pwd=$fname=$mname=$sname=$mail=$phone_no=$physicalAdd='';
 
 	//Get data from user
-	if(isset($_POST['adminReg']))
+	if($_SERVER["REQUEST_METHOD"]=="POST" & isset($_POST['adminReg']))
 	{
-		if(isset($_POST['firstname']) & isset($_POST['middlename'])&isset($_POST['lastname']) & isset($_POST['usname']) & isset($_POST['email']) & isset($_POST['password']) & isset($_POST['mobile_number']))
+		//Creating an object for the administrator class
+        $adUser= new AdminUser;
+		if(isset($_POST['firstname']) & isset($_POST['middlename'])&isset($_POST['lastname']) & isset($_POST['usname']) & isset($_POST['email']) & isset($_POST['password']) & isset($_POST['mobile_number']) & isset($_POST['paddress']))
 		{
 			$uname=$_POST['usname'];
 			$pwd=$_POST['password'];
@@ -54,18 +55,32 @@ function createAdmin()
 			$sname=$_POST['lastname'];
 			$mail=$_POST['email'];
 			$phone_no=$_POST['mobile_number'];
+			$physicalAdd=$_POST['paddress'];
+			//echo $physicalAdd;
 
 			/*Validate the user values*/
-			if($validateName($fname) & $validateName($mname) & $validateName($sname) & validatePhone($phone_no) & validateEmail($mail) & validateUsername($uname) & validateP($pwd))
-			{
-				//Insert the details
-				$adUser->createAdmin($fname, $mname, $sname,$uname, $pwd,$phone_no,$mail)
+			/*if(validateName($fname)==true & validateName($mname)==true & validateName($sname)==true & validatePhone($phone_no)==true & validateEmail($mail)==true & validateUsername($uname)==true & validateP($pwd)==true)
+			{*/
+				
+				//Hash password and insert the details
+				$pwd_hashed= password_hash($pwd, PASSWORD_DEFAULT);
+				
+				$adUser->createAdmin($fname, $mname, $sname,$uname, $pwd_hashed,$phone_no,$mail, $physicalAdd);
 
-			}
+			/*}*/
 
+		}
+		else
+		{
+           echo "Fill all the fields";
 		}
 	}
 
-
 }
+if(isset($_POST['adminReg']))
+{
+	createAdmn();
+}
+
+//var_dump(createAdmn());
 ?>

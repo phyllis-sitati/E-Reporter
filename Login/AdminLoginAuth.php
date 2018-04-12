@@ -3,63 +3,62 @@
 *This class authenticates Admin Login 
 *@author Phyllis Sitati
 **/
+//including the database file
+require_once("../database/dbconnect.php");
+//Creating a database connection
+$dbObj = new DatabaseConnection;
 //Initializing login variables: username and password
-$username = '';
-$password = '';
+//$username = '';
+//$password = '';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if (/*$_SERVER['REQUEST_METHOD'] == 'POST' &*/ isset($_POST["submit"])) 
+{
     
-    require_once("../database/dbconnect.php");
-    //Creating a database connection
-    $dbObj = new DatabaseConnection;
-   if(isset($_POST["submit"]))  { 
-    if(!empty($_POST["username"]) && !empty($_POST["passwd"])) {
+    if(!empty($_POST["username"]) && !empty($_POST["passwd"])) 
+    {
         $username = $_POST["username"];
         $password = $_POST["passwd"];
-       //Getting a database connection
+        echo $username;
+        // Query that gets admin details to enable login
 
-        $connection = $dbObj->returnDBConnect(); 
-        //Get the password from the database
-        $query = $connection->prepare("SELECT Password FROM adminlogin WHERE Username = ? ");
-        $query->bind_param("s", $username);
-        $query->execute();
-        $query->bind_result($dbPassword);
-        $query->fetch();
-        $query->close();
-        var_dump($dbPassword);
-        /**Get admin id using the username, password from database and password from the form**/
-        //First verify the two passwords
+        $query = "SELECT * FROM adminlogin WHERE Username ='$username'";
+       //checking a database connection
+        if($dbObj->returnDBConnect()==true)
+        {
+            if($dbObj->queryDatabase($query)==true)
+            {
+              $adminDetails = $dbObj->getRow();
 
-        if(password_verify($password,$dbPassword)){
-        	$newPasswd = $dbPassword;
+               //check the values of the returned $adminDetails
+              if($adminDetails==null)
+              {
+                echo "Wrong username";
+              }
+              else
+              {
+                //otherwise verify the password and redirect user to admin dashboard
+                if(password_verify($password,$adminDetails['Password']))
+                {
+                    //Start a session
+                    session_start();
+                    $_SESSION['Admin_Id']= $adminDetails['Admin_Id'];
+                    $_SESSION['Username']= $adminDetails['Username'];
+                    $_SESSION['pwd']= $adminDetails['Password'];
+
+                    header("Location: ../Admin/dashboard.php");
+                }
+                else
+                {
+                    header("Location: AdminLogin.php");
+                }
+              }
+            }
+            else
+            {
+                echo "Could not execute query";
+            }
+
         }
-         
-    
-        $query = $connection->prepare("SELECT Admin_Id FROM adminlogin WHERE Username = ? and Password = ? ");
-        $query->bind_param("ss", $username, $newPasswd );
-        $query->execute();
-        $query->bind_result($adminId);
-        $query->fetch();
-        $query->close();
-        
-        if(!empty($adminId)) {
-            session_start();
-            $session_key = session_id();
-            
-            $query = $connection->prepare("INSERT INTO sessions ( Admin_Id, session_key, session_address, session_adminagent, session_expires) VALUES ( ?, ?, ?, ?, DATE_ADD(NOW(),INTERVAL 1 HOUR) )");
-            $query->bind_param("isss", $adminId, $session_key, $_SERVER['REMOTE_ADDR'], $_SERVER['HTTP_USER_AGENT'] );
-            $query->execute();
-            $query->close();
-            
-            header('Location: Admin/AdminDashBoard.php');
-        }
-        else {
-            header('Location: Login/AdminLogin.php');
-        }
-        
-    } else {
-        header('Location: Login/AdminLogin.php');
     }
-} 
 }
 ?>

@@ -7,5 +7,5 @@
 	define('SERVER', 'localhost');
 	define('USER', 'root');
 	define('PASS', '');
-	define('DATABASE', 'e-reporter');
+	define('DATABASE', 'e_reporter');
 ?>

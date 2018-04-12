@@ -5,20 +5,20 @@
 **/
 // the database class
 require_once('../database/dbConnect.php');
-//Object of the Database class
-$edb=new DatabaseConnection;
 //PublicUser class
-require_once('publicUserPost.php');
+//require_once('publicUserPost.php');
 //Object of the PublicUser class
-$pUser= new PublicUser;
+//$pUser= new PublicUser;
 
-Class AdminUser{
+Class AdminUser
+{
+	
 	//Constructor
 	function _construct(){}
 
 	/**Function that displays total registered voters
 	*@return integer
-	**/
+	
     function registeredVoters()
     {
     	$sum=0;
@@ -37,34 +37,39 @@ Class AdminUser{
     		}
        	}
        	return $sum;
-    }
+    }**/
 
 	/**
 	* Function that creates a new administrator
 	**/
 	function createAdmin($fname, $mname, $lname,$username, $email,$password,$phone,$physicalAdd)
 	{
-		$qry="INSERT INTO 'adminuser'('FirstName', 'MiddleName', 'Surname', 'username', 'Password','PhoneNumber', 'Email_address','Physical_Address')VALUES('$fname', '$mname', '$lname','$username', '$password','$phone','$email','$physicalAdd');";
-		if($edb->getConnection()==true)
+		//Object of the Database class
+       $edb= new DatabaseConnection;
+		$qry="INSERT INTO adminuser(FirstName, MiddleName, Surname, username, Password,PhoneNumber, Email_Address,Physical_Address)VALUES('$fname', '$mname', '$lname','$username', '$password','$phone','$email','$physicalAdd')";
+		if($edb->returnDBConnect()==true)
 		{
 			if($edb->queryDatabase($qry))
 			{
-				echo "Succesfully created an admin";
+				header("location: ../Admin/dashboard.php");
 			}
 			else
 			{
-				echo "query unsuccesful";
+				header("location: ../Admin/CreateAdmin.php");
 			}
 		}
 		else
 		{
-			echo "problem connecting to the database";
+			header("location: ../Admin/CreateAdmin.php");
 		}
 
 	}
+}
+/*$adminuser= new AdminUser;
+$adminuser->createAdmin('Phyllis', 'Nabangi','Sitati', 'Phyllis.Sitati' ,'phyllis.sitati@ashesi.edu.gh', '0540184987',  'Cotilah@1996','2nd Wamalwa Kijana Street Bungoma Kenya');*/
 	/**
 	* Function that allow the admin to approve results
-	**/
+	
 	function approveResults($userid)
 	{
 		$uid=$cid=$pcode=$picture=$Result=$Percentage=$status=$insert_Time=$location;
@@ -78,11 +83,11 @@ Class AdminUser{
 			}
 		}
 
-	}
+	}**/
 
 	/**
 	* Function that displays approved results
-	**/
+	
     function displayApproved()
     {
     	$userid=$cid=$Result;
@@ -96,12 +101,12 @@ Class AdminUser{
 		$qry3="SELECT 'FirstName','MiddleName','Surname'  FROM candidate WHERE Candidate_Id=$cid ;";
 		$qry4="SELECT 'PName' FROM pollingstation WHERE 'PCode'='$pcode';";
 
-    }
+    }**/
 
 	/**
 	* Function that shows cancelled results
 	*@return Uname, Cname, pollname,Result,insert_Time,Picture
-	**/
+	
 	function cancelledResults()
 	{
 		$userid=$cid=$Result;
@@ -146,9 +151,11 @@ Class AdminUser{
 		return ($Uname, $Cname, $pollname,$Result,$insert_Time,$Picture);//Checkout
 
 	}
+	**/
+
 	/**
 	* Function that locks a polling station
-	**/
+	
 
 	function lockStation($pcode,$StationName)
 	{
@@ -170,10 +177,10 @@ Class AdminUser{
 	 	  }
 	   }
        //Checking condition for locking
-       if($PName==$StationName and $status=='approved'){
+       if($PName==$StationName and $status=='approved')
+       {
        	echo "The submission slot for this polling station is closed";
        }
-	}
+	}**/
 
-}
 ?> 

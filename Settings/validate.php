@@ -13,7 +13,7 @@
 	global $newPassword,$newPasswordColor,$newPasswordErrorMessage;
 	global $confirmPassword,$confirmPasswordColor,$confirmPasswordErrorMessage;
     //If the password field is not empty
- 	if(isset($_POST[$value]) & !empty($_POST[$value])
+ 	if(isset($_POST[$value]) & !empty($_POST[$value]))
  	{
  		$password=$_POST[$value];
  		//Check the password length(8>p<16) then check if it follows the given regex pattern
@@ -221,71 +221,56 @@ function validatePhone($phone_no)
  function validateName($fname)
 {
 	global $firstName,$firstNameColor,$firstNameErrorMessage;
-	//checks if the first name is not empty
-	if (isset($_POST[$fname]) & !empty($_POST[$fname])) 
-	{
-		$firstName = $_POST[$fname];
+	
 
-		//checks if the username meets the patter
-		$pattern = "/^[a-zA-Z]+$/";
-		if (preg_match($pattern,$firstName)) 
-		{
-			$firstNameColor="green";
-			return true;
-		}
-		else
-		{
-			$firstNameColor="red";
-			$firstNameErrorMessage="*name must not contain numbers";
-			return false;
-		}
+	//checks +if the username meets the pattern
+	$pattern = "/^[a-zA-Z]+$/";
+	if (preg_match($pattern,$firstName)) 
+	{
+		$firstNameColor="green";
+		return true;
 	}
 	else
 	{
 		$firstNameColor="red";
-		$firstNameErrorMessage="*name must be filled";
+		$firstNameErrorMessage="*name must not contain numbers";
 		return false;
 	}
+	
 }
 //Validate password
 function validateP($pwd)
 {
 	//Global variables used in the validation
  	global $pword,$pwordColor,$pwordErrorMessage;
-    //If the password field is not empty
- 	if(isset($_POST[$pwd]) & !empty($_POST[$pwd])
- 	{
- 		$password=$_POST[$pwd];
- 		//Check the password length(8>p<16) then check if it follows the given regex pattern
- 		if (strlen($pword)>=8 & strlen($pword)<16)
- 		{
- 			//pattern
- 			$pattern = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/";
-			if (preg_match($pattern,$password))
-			{
-				
-				$pwordColor = "green";
-				return true;
-			}
-			else
-			{
-				$pwordColor = "red";
-				$passwordErrorMessage = "*password must have atleast a number, symbol and an uppercase letter";
-				
-				return false;
 
-			}
+ 	//Check the password length(8>p<16) then check if it follows the given regex pattern
+	if (strlen($pword)>=8 & strlen($pword)<16)
+	{
+	 	//pattern
+	 	$pattern = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/";
+		if (preg_match($pattern,$password))
+		{
+					
+			$pwordColor = "green";
+			return true;
+		}
+		else
+		{
+			$pwordColor = "red";
+			$passwordErrorMessage = "*password must have atleast a number, symbol and an uppercase letter";
+					
+			return false;
 
- 		}
- 	 }
- 	else
- 	{
- 		
-		
-		$pwordColor = "red";
-		$passwordErrorMessage = "*password must be filled";
-		
-		return false;
- 	}
+		}
+
+	}
+	else
+	{
+		echo "Password must have atleast 8 characters and atmost 13";
+	}
+
+ }
+ var_dump(validateName('Phyllis'));
 
 ?>

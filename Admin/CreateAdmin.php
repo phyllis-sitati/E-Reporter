@@ -22,7 +22,7 @@
 
 </head>
 <body>
- 
+ <?php include('../controller/admincontroller.php');?>
 
   <div class="w3ls-banner">
     <div class="heading">
@@ -31,7 +31,7 @@
     <div class="container col-sm-7">
       
       <div class="agile-form">
-        <form action="" method="post">
+        <form action="../controller/admincontroller.php" method="post">
           <ul class="field-list">
             <li class="name">
               <label class="form-label"> First Name <span class="form-required"></span></label>

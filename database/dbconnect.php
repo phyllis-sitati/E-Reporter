@@ -112,6 +112,8 @@ class DatabaseConnection
 	}
 
 }
+/*$db= new DatabaseConnection;
+var_dump($db->returnDBConnect());*/
 /**$pswhashed= password_hash('Barasa7730',PASSWORD_DEFAULT);
 echo $pswhashed;*/
 ?>
