@@ -11,37 +11,63 @@ $dbObj = new DatabaseConnection;
 //$username = '';
 //$password = '';
 
-if (/*$_SERVER['REQUEST_METHOD'] == 'POST' &*/ isset($_POST["logbtn"])) 
+if (isset($_POST["logbtn"])) 
 {
+  //get and checking a database connection
+   $conn= $dbObj->returnDBConnect();
+   //Get user details
+   $username =mysqli_escape_string($conn, $_POST['username']);
+   $password =mysqli_escape_string($conn, $_POST['passwd']);
     
-    if(isset($_POST["username"]) & isset($_POST["passwd"])) 
+    if(empty($username)|| empty($password)) 
     {
-        $username = $_POST["username"];
-        $password = $_POST["passwd"];
-       // echo $username;
+      
+    }
+    else
+    {
+      //Check if username exists in the database
+      $sql1="SELECT * FROM adminuser WHERE Username='$username'";
+      $usExist =mysql_query($sql1);
+    }
+  }else
+  {
+    header("Location:AdminLogin.php?login=error! you don't have permission to access this page");
+    exit();
+  }
         // Query that gets admin details to enable login
 
         $query = "SELECT * FROM adminuser WHERE Username ='$username'";
-       //checking a database connection
-        if($dbObj->returnDBConnect()==true)
+       //get and checking a database connection
+        $conn= $dbObj->returnDBConnect();
+        //echo $conn;
+        if(mysqli_query($conn, $query))
         {
-          $conn=$dbObj->queryDatabase($query);
-          //var_dump($conn);
-            if($dbObj->queryDatabase($query)==true)
-            {
-              $adminDetails = $dbObj->getRow();
-             // echo $adminDetails;
+          echo " ";
+        }
+        else
+        {
+          echo "error: ".mysql_error($connection);
+        }
+          //Query database to get user details
+          $result=mysqli_query($conn, $query);
 
-               //check the values of the returned $adminDetails
+           if($result)
+           {
+              $adminDetails = mysqli_fetch_assoc($result);
+
+              //check the values of the returned $adminDetails
               if($adminDetails==null)
               {
                 echo "Wrong username";
               }
+
               else
               {
                 //echo $adminDetails['Password'];
                 //otherwise verify the password and redirect user to admin dashboard
-                if(password_verify($password,$adminDetails['Password']))
+                $verified=password_verify($password, $adminDetails['Password']);
+                //var_dump($verified);
+                if($verified)
                 {
 
                     //Start a session
@@ -54,16 +80,23 @@ if (/*$_SERVER['REQUEST_METHOD'] == 'POST' &*/ isset($_POST["logbtn"]))
                 }
                 else
                 {
-                    header("Location: AdminLogin.php");
+                  echo "wrong password";
+                    //header("Location: AdminLogin.php");
                 }
               }
-            }
+
+            }  
             else
             {
-                echo "Could not execute query ".mysqli_error($conn);
+                echo "no result returned ".mysqli_error($conn);
             }
-//Cotilah@1996
         }
-    }
-}
+        else
+        {
+          echo "fill in your username and password";
+        }
+      }
+            
+//Cotilah@1996
+   
 ?>

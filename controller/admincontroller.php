@@ -5,6 +5,7 @@
 //Including necessary files
  require_once('../settings/validate.php');
  require_once('../classes/adminfunctions.php');
+ require_once('../database/dbconnect.php');
 
  //Function DisplayRegistered voters
  function displayRegistered()
@@ -38,45 +39,107 @@
 function createAdmn()
 {
 	 
-	//Variable
-	//$uname=$pwd=$fname=$mname=$sname=$mail=$phone_no=$physicalAdd='';
 
 	//Get data from user
-	if($_SERVER["REQUEST_METHOD"]=="POST" & isset($_POST['adminReg']))
+	if(isset($_POST['adminReg']))
 	{
 		//Creating an object for the administrator class
         $adUser= new AdminUser;
-		if(isset($_POST['firstname']) & isset($_POST['middlename'])&isset($_POST['lastname']) & isset($_POST['usname']) & isset($_POST['email']) & isset($_POST['password']) & isset($_POST['mobile_number']) & isset($_POST['paddress']))
+        //Creating an object of the database class
+        $db= new DatabaseConnection;
+        //Get a connection
+        $conn=$db->returnDBConnect();
+        //Get user data
+            $uname=mysqli_real_escape_string($conn, $_POST['usname']);
+            $fname=mysqli_real_escape_string($conn, $_POST['firstname']);
+            $mname=mysqli_real_escape_string($conn, $_POST['middlename']);
+            $sname=mysqli_real_escape_string($conn, $_POST['lastname']);
+            $mail=mysqli_real_escape_string($conn, $_POST['email']);
+            $phone_no=mysqli_real_escape_string($conn, $_POST['mobile_number']);
+			$pwd=mysqli_real_escape_string($conn, $_POST['password']);
+			$physicalAdd=mysqli_real_escape_string($conn, $_POST['paddress']);
+
+			 //Check for empty fields
+		if(empty($uname)|| empty($fname) || empty($mname) || empty($sname) || empty($mail) || empty($phone_no)|| empty($pwd)|| empty($physicalAdd))
 		{
-			$uname=$_POST['usname'];
-			$pwd=$_POST['password'];
-			$fname=$_POST['firstname'];
-			$mname=$_POST['middlename'];
-			$sname=$_POST['lastname'];
-			$mail=$_POST['email'];
-			$phone_no=$_POST['mobile_number'];
-			$physicalAdd=$_POST['paddress'];
-			//echo $physicalAdd;
-
-			/*Validate the user values*/
-			/*if(validateName($fname)==true & validateName($mname)==true & validateName($sname)==true & validatePhone($phone_no)==true & validateEmail($mail)==true & validateUsername($uname)==true & validateP($pwd)==true)
-			{*/
-				
-				//Hash password and insert the details
-				$pwd_hashed= password_hash($pwd, PASSWORD_DEFAULT);
-				
-				$adUser->createAdmin($fname, $mname, $sname,$uname, $pwd_hashed,$phone_no,$mail, $physicalAdd);
-
-			/*}*/
-
+			header("Location: ../Admin/CreateAdmin.php?CreateAdmin= you have empty fields");
+			exit();
 		}
 		else
 		{
-           echo "Fill all the fields";
-		}
+			//Validate the user values using a regex patterns
+			//check for username
+			if(!preg_match("/^[A-Za-z]+\.([A-Za-z]\.)?[A-Za-z]+$/", $uname))       
+			{
+				header("Location: ../Admin/CreateAdmin.php?CreateAdmin= invalid! username must be in the format firstname.lastname");
+			    exit();
+			}
+			else
+			{
+				//Check for first, middle and last name
+				if(!preg_match("/^[a-zA-Z]+$/", $fname) || !preg_match("/^[a-zA-Z]+$/", $mname) 
+					|| !preg_match("/^[a-zA-Z]+$/", $sname) )
+				{
+					header("Location: ../Admin/CreateAdmin.php?CreateAdmin= Invalid! name must contain letters only");
+			        exit();
+				}
+				else
+				{
+					//Check for email pattern and validity
+					if(!preg_match("/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/", $mail) 
+						& !filter_var($mail, FILTER_VALIDATE_EMAIL))
+					{
+						header("Location: ../Admin/CreateAdmin.php?CreateAdmin= Please enter a valid email!");
+			            exit();
+					}
+					else
+					{
+						//validate phone number
+						if(!preg_match("/^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\.\/0-9]*$/", $phone_no ))
+						{
+							header("Location: ../Admin/CreateAdmin.php?CreateAdmin= Invalid Phone number!");
+			                exit();
+						}
+						else
+						{
+							//Validate password
+							if(!preg_match("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/", $pwd))
+							{
+								header("Location: ../Admin/CreateAdmin.php?CreateAdmin= Password must be atleast 6 characters, contain atleast 1 uppercase value, lowercase value, number and a symbol!");
+			                    exit();
+							}
+							else
+							{
+								//Check if the username already exists
+								//Query
+								$sql = "SELECT * FROM adminuser WHERE Username='$uname'";
+								//Execute query
+								$output=mysqli_query($conn,$sql);
+								$outputcheck= mysqli_num_rows($output);
+								if($outputcheck > 0)
+								{
+									header("Location: ../Admin/CreateAdmin.php?CreateAdmin= username is already taken");
+							        exit();
+								}
+								else
+								{
+										//Hash the password 
+										$pwd_hashed= password_hash($pwd, PASSWORD_DEFAULT);
+										// insert user details using function from adminuser class
+										$adUser->createAdmin($fname, $mname, $sname,$uname, $pwd_hashed,$phone_no,$mail, $physicalAdd);
+								}
+							}
+						}
+					}
+				}
+
+			}
+
+		}		
+
+	 }
 	}
 
-}
  //Function that updates user profile details
 
  function updateDetails()
@@ -119,6 +182,7 @@ if(isset($_POST['updatebtn']))
 {
 	updateDetails();
 }
+//Cotilah@1996 0540184587  phyllis.sitati@ashesi.edu.gh  Phyllis.Sitati, Sitati  Nabangi Phyllis, 2nd Wamalwa Kijana street
 
 //var_dump(createAdmn());
 ?>

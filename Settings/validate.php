@@ -271,6 +271,6 @@ function validateP($pwd)
 	}
 
  }
- var_dump(validateName('Phyllis'));
+ 
 
 ?>
