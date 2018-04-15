@@ -42,14 +42,15 @@ Class AdminUser
 	/**
 	* Function that creates a new administrator
 	**/
-	function createAdmin($fname, $mname, $lname,$username, $email,$password,$phone,$physicalAdd)
+	function createAdmin($fname, $mname, $lname,$username, $password, $phone, $email, $physicalAdd)
 	{
 		//Object of the Database class
        $edb= new DatabaseConnection;
-		$qry="INSERT INTO adminuser(FirstName, MiddleName, Surname, username, Password,PhoneNumber, Email_Address,Physical_Address)VALUES('$fname', '$mname', '$lname','$username', '$password','$phone','$email','$physicalAdd')";
-		if($edb->returnDBConnect()==true)
+		$qry="INSERT INTO adminuser(FirstName, MiddleName, Surname, Username, Password,PhoneNumber, Email_Address,Physical_Address)VALUES('$fname', '$mname', '$lname','$username', '$password','$phone','$email','$physicalAdd')";
+		$conn=$edb->returnDBConnect();
+		if($conn)
 		{
-			if($edb->queryDatabase($qry))
+			if(mysqli_query($conn,$qry))
 			{
 				header("location: ../Admin/dashboard.php");
 			}
@@ -64,9 +65,51 @@ Class AdminUser
 		}
 
 	}
+
+	/**
+    *Function that updates user profile
+    **/
+
+    function updateUserProfile($fname, $mname, $lname, $emailAdd,$passd, $pno, $paddr)
+    {
+    	//Object of the Database class
+       $edb= new DatabaseConnection;
+    	$id =0;
+    	//Hash password
+    	$pwd_hashed = password_hash($passd, PASSWORD_DEFAULT);
+    	//Query that gets the id of an admin
+    	$qry1 ="SELECT Admin_Id FROM adminuser WHERE PhoneNumber='$pno'";
+       if($edb->returnDBConnect()==true)
+       	{
+       		$conn=$edb->queryDatabase($qry1);
+       		//Get Admin id
+       		if($edb->queryDatabase($qry1)==true)
+       		{
+              $row=$edb->getRow();
+              $id=$row['Admin_Id'];
+              echo $id;
+              //Update the user details
+       		  //Query that gets updates user details
+    	      $qry2="UPDATE adminuser SET FirstName='$fname', MiddleName='$mname', Surname='$lname', Password='$pwd_hashed',PhoneNumber='$pno', Email_Address='$emailAdd', Physical_Address='$paddr' WHERE Admin_Id=$id ";
+    	      if($edb->queryDatabase($qry2)==true)
+    	      {
+    	    	 echo "User details updated";
+    	      }
+       		}
+       		else
+       		{
+       			echo "could not execute query".mysqli_error($conn);
+       		}
+       		
+       	} 
+    }
 }
-/*$adminuser= new AdminUser;
-$adminuser->createAdmin('Phyllis', 'Nabangi','Sitati', 'Phyllis.Sitati' ,'phyllis.sitati@ashesi.edu.gh', '0540184987',  'Cotilah@1996','2nd Wamalwa Kijana Street Bungoma Kenya');*/
+
+
+
+$adminuser= new AdminUser;
+
+//$adminuser->updateUserProfile('Phyllis', 'Khisa','Sitati', 'phyllis.sitati@ashesi.edu.gh', '0540184989',  'Cotilah@1996','3nd Wamalwa Kijana Street Bungoma');
 	/**
 	* Function that allow the admin to approve results
 	

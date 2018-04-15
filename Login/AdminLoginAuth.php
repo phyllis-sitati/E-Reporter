@@ -11,23 +11,26 @@ $dbObj = new DatabaseConnection;
 //$username = '';
 //$password = '';
 
-if (/*$_SERVER['REQUEST_METHOD'] == 'POST' &*/ isset($_POST["submit"])) 
+if (/*$_SERVER['REQUEST_METHOD'] == 'POST' &*/ isset($_POST["logbtn"])) 
 {
     
-    if(!empty($_POST["username"]) && !empty($_POST["passwd"])) 
+    if(isset($_POST["username"]) & isset($_POST["passwd"])) 
     {
         $username = $_POST["username"];
         $password = $_POST["passwd"];
-        echo $username;
+       // echo $username;
         // Query that gets admin details to enable login
 
-        $query = "SELECT * FROM adminlogin WHERE Username ='$username'";
+        $query = "SELECT * FROM adminuser WHERE Username ='$username'";
        //checking a database connection
         if($dbObj->returnDBConnect()==true)
         {
+          $conn=$dbObj->queryDatabase($query);
+          //var_dump($conn);
             if($dbObj->queryDatabase($query)==true)
             {
               $adminDetails = $dbObj->getRow();
+             // echo $adminDetails;
 
                //check the values of the returned $adminDetails
               if($adminDetails==null)
@@ -36,9 +39,11 @@ if (/*$_SERVER['REQUEST_METHOD'] == 'POST' &*/ isset($_POST["submit"]))
               }
               else
               {
+                //echo $adminDetails['Password'];
                 //otherwise verify the password and redirect user to admin dashboard
                 if(password_verify($password,$adminDetails['Password']))
                 {
+
                     //Start a session
                     session_start();
                     $_SESSION['Admin_Id']= $adminDetails['Admin_Id'];
@@ -55,9 +60,9 @@ if (/*$_SERVER['REQUEST_METHOD'] == 'POST' &*/ isset($_POST["submit"]))
             }
             else
             {
-                echo "Could not execute query";
+                echo "Could not execute query ".mysqli_error($conn);
             }
-
+//Cotilah@1996
         }
     }
 }

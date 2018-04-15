@@ -77,9 +77,47 @@ function createAdmn()
 	}
 
 }
+ //Function that updates user profile details
+
+ function updateDetails()
+ {
+ 	//
+ 	if (isset($_POST['updatebtn']))
+ 	{
+ 		//Check if the fields have data
+ 		if(isset($_POST['mail']) & isset($_POST['fname']) & isset($_POST['mname']) & isset($_POST['lname']) & isset($_POST['password']) & isset($_POST['phone']) & isset($_POST['address']))
+ 		{
+ 			//Get data from the fields
+ 			$fname = $_POST['fname'];
+ 			$mname = $_POST['mname'];
+ 			$sname = $_POST['lname'];
+ 			$pwd = $_POST['password'];
+ 			$phone_no = $_POST['phone'];
+ 			$mail = $_POST['mail'];
+ 			$address = $_POST['address'];
+
+ 			//Update user details
+ 			//Creating an object for the administrator class
+            $adUser= new AdminUser;
+ 			$adUser->updateUserProfile($fname, $mname, $sname, $mail, $pwd, $phone_no, $address);
+ 		}
+ 		else
+ 		{
+ 			echo "you have empty field(s)!";
+ 		}
+ 	}
+ }
+
+ //function that populates the fields of the user profile before an update occurs
+ function populateProfile($id){}
+ 
 if(isset($_POST['adminReg']))
 {
 	createAdmn();
+}
+if(isset($_POST['updatebtn']))
+{
+	updateDetails();
 }
 
 //var_dump(createAdmn());

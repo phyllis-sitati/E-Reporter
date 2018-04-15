@@ -4,11 +4,51 @@
 **/
 // the database class
 require_once('../database/dbConnect.php');
-//Object of the Database class
-$edb=new DatabaseConnection;
-Class PublicUser{
-    //Constructor
-    function _construct(){}
+
+Class PublicUser 
+{
+
+  //Constructor
+  function _construct(){}
+
+  /**
+* Function that inserts the public user's personal details
+**/
+ function userDetails($Fname, $Mname,$Surname,$location, $Phone)
+ {
+    //Object of the Database class
+    $edb=new DatabaseConnection;
+    //Check database connection
+    if($edb->returnDBConnect()==true)
+    {
+            //Insert public user's details
+
+             //Query for Inserting
+            $userqry ="INSERT INTO publicuser (FirstName, Surname, CurrentLocation PhoneNumber) VALUES( '$Fname', '$Mname','$Surname','$location', '$Phone')";
+               //Inserting public user data
+            $conn=$edb->queryDatabase($userqry);
+            if($conn== true)
+            {
+               echo "Successfully inserted public user";
+            }
+            else
+            {
+              echo "could not execute query".mysqli_error($conn);
+            }
+
+       
+
+   }
+   else{
+    echo "Could not insert public user data";
+   }
+
+}
+
+}
+/*$pUser = new PublicUser;
+$pUser->userDetails('Melissah', 'Sabina', 'Sitati', 'Ojomoro_North Primary school', 0567335589);*/
+    
 
 
 /**--------------------------------
@@ -20,7 +60,7 @@ Class PublicUser{
     * Given pollingstaion name
     * @return a code for the polling station 
     **/
-    function getStation($PollingStation)
+    /*function getStation($PollingStation)
     {
         $StationCode='';
         if($edb->getConnection()==true)
@@ -39,13 +79,13 @@ Class PublicUser{
          }   
      }
      return $StationCode;
- }
+ }*/
 
  /**
  * Function that returns a candidate's id
  * @return a candidate id
  **/
- function candidateId($fname, $surname, $party)
+ /*function candidateId($fname, $surname, $party)
  {
     $id=0;
     if($edb->getConnection()==true)
@@ -69,13 +109,13 @@ Class PublicUser{
         } 
     }
     return $id;
- }
+ }*/
 
  /**
  * Function that returns a candidate's category
  * @return candidate's category.
  **/
- function candidateCategory($fname,$surname,$party)
+ /*function candidateCategory($fname,$surname,$party)
  {
     $category='';
     if($edb->getConnection()==true)
@@ -99,45 +139,17 @@ Class PublicUser{
         } 
     }
     return $category;
- }
+ }*/
 /**------------------
    END OF HELPER FUNCTIONS
 *----------------------
 **/
 
-/**
-* Function that inserts the user's personal details
-**/
- function userDetails($PollingStation,$Fname, $Mname,$Surname,$Phone)
- {
-    if($edb->getConnection()==true)
-    {
-            //Getting polling station code using polling station name
 
-        $StationCode=$this->getStation($PollingStation);
-        if(!Empty($StationCode))
-        {
-
-             //Query for Inserting
-            $userqry ="INSERT INTO 'publicuser'('PCode','FirstName','Surname','PhoneNumber') VALUES( '$StationCode','$Fname', '$Mname','$Surname','$Phone');";
-               //Inserting public user data
-            if($edb->queryDatabase($userqry)== true)
-            {
-               echo "Successfully inserted public user";
-            }
-
-       }
-
-   }
-   else{
-    echo "Could not insert public user data";
-   }
-
-}
 
     /**Function that inserts a polling station result statistics**/
    
-function pollStatistics($PollingStation,$TotalCast, $ValidVotes, $Rejected, $Voter_Turnout, $Percentage)
+/*function pollStatistics($PollingStation,$TotalCast, $ValidVotes, $Rejected, $Voter_Turnout, $Percentage)
 {
     if($edb->getConnection()==true){
        //Getting polling station code from Name
@@ -166,12 +178,12 @@ function pollStatistics($PollingStation,$TotalCast, $ValidVotes, $Rejected, $Vot
     
     
 
-}
+}*/
 
 /**
 * Function that inserts candidate data supplies by the public user
 **/
-function insertCandidateData($fname,$surname,$party, $userid, $pollingstation, $result,$percentage)
+/*function insertCandidateData($fname,$surname,$party, $userid, $pollingstation, $result,$percentage)
 {
     if($edb->getConnection()==true)
     {
@@ -182,7 +194,7 @@ function insertCandidateData($fname,$surname,$party, $userid, $pollingstation, $
         //Get candidate category
         $category=$this->;
     }
-}
+}*/
 
-}
+
 ?>

@@ -62,12 +62,12 @@ class DatabaseConnection
 		$this->result = mysqli_query($this->connection,$sqlQuery);
 
 		//closes the mysql connection
-		mysqli_close($this->connection);
+		//mysqli_close($this->connection);
 		
 		//checks if the query fails
 		if ($this->result == false) 
 		{
-			return false;
+			return $this->connection;
 		}
 		return true;
 	}
