@@ -17,86 +17,65 @@ if (isset($_POST["logbtn"]))
    $conn= $dbObj->returnDBConnect();
    //Get user details
    $username =mysqli_escape_string($conn, $_POST['username']);
-   $password =mysqli_escape_string($conn, $_POST['passwd']);
+   $psword =mysqli_escape_string($conn, $_POST['passwd']);
     
-    if(empty($username)|| empty($password)) 
+    if(empty($username)|| empty($psword)) 
     {
-      
+      header("Location:AdminLogin.php?login=error! empty fields!");
+        exit();
     }
     else
     {
       //Check if username exists in the database
-      $sql1="SELECT * FROM adminuser WHERE Username='$username'";
-      $usExist =mysql_query($sql1);
+      $sql="SELECT * FROM adminuser WHERE Username='$username'";
+      $usExist = mysqli_query($conn, $sql);
+      $check=mysqli_num_rows($usExist);
+      if($check < 1)
+      {
+        header("Location:AdminLogin.php?login=error!");
+        exit();
+      }
+      else
+      {
+        // verify the password and redirect user to admin dashboard
+        if($row = mysqli_fetch_assoc($usExist))
+        {
+          $dbpass=$row['Password'];
+          //otherwise verify the password and redirect user to admin dashboard
+          $verified=password_verify($psword, $dbpass);
+          //check if they did not matched and send user back to login
+          if($verified==false)
+          {
+            header("Location: AdminLogin.php?login=wrong password!");
+            exit();
+          }
+          elseif ($verified==true)
+          {
+            # login user
+            //Start a session
+            session_start();
+            $_SESSION['Admin_Id']= $row['Admin_Id'];
+            $_SESSION['Username']= $row['Username'];
+            $_SESSION['pwd']= $row['Password'];
+            $_SESSION['u_first']= $row['FirstName'];
+            $_SESSION['u_middle']= $row['MiddleName'];
+            $_SESSION['u_last']= $row['Surname'];
+            $_SESSION['phone']= $row['PhoneNumber'];
+            $_SESSION['u_email']= $row['Email_Address'];
+            $_SESSION['u_address']= $row['Physical_Address'];
+
+            header("Location: ../Admin/dashboard.php?login=success!");
+            exit();
+
+          }
+        }
+      }
     }
-  }else
+  }
+ /* else Cotilah@1996
   {
     header("Location:AdminLogin.php?login=error! you don't have permission to access this page");
     exit();
-  }
-        // Query that gets admin details to enable login
-
-        $query = "SELECT * FROM adminuser WHERE Username ='$username'";
-       //get and checking a database connection
-        $conn= $dbObj->returnDBConnect();
-        //echo $conn;
-        if(mysqli_query($conn, $query))
-        {
-          echo " ";
-        }
-        else
-        {
-          echo "error: ".mysql_error($connection);
-        }
-          //Query database to get user details
-          $result=mysqli_query($conn, $query);
-
-           if($result)
-           {
-              $adminDetails = mysqli_fetch_assoc($result);
-
-              //check the values of the returned $adminDetails
-              if($adminDetails==null)
-              {
-                echo "Wrong username";
-              }
-
-              else
-              {
-                //echo $adminDetails['Password'];
-                //otherwise verify the password and redirect user to admin dashboard
-                $verified=password_verify($password, $adminDetails['Password']);
-                //var_dump($verified);
-                if($verified)
-                {
-
-                    //Start a session
-                    session_start();
-                    $_SESSION['Admin_Id']= $adminDetails['Admin_Id'];
-                    $_SESSION['Username']= $adminDetails['Username'];
-                    $_SESSION['pwd']= $adminDetails['Password'];
-
-                    header("Location: ../Admin/dashboard.php");
-                }
-                else
-                {
-                  echo "wrong password";
-                    //header("Location: AdminLogin.php");
-                }
-              }
-
-            }  
-            else
-            {
-                echo "no result returned ".mysqli_error($conn);
-            }
-        }
-        else
-        {
-          echo "fill in your username and password";
-        }
-      }
-            
-//Cotilah@1996
+  }*/
    
 ?>

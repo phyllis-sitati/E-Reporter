@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <link rel="icon" type="image/png" href="assets/img/favicon.ico">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
   <title>E-Reporter: Approved Results</title>
@@ -29,45 +29,43 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
-
 </head>
 <body>
 
 <div class="wrapper">
-    <div class="sidebar" data-color="orange" data-image="assets/img/sidebar-5.jpg">
+    <div class="sidebar" data-color="blue" data-image="assets/img/sidebar-5.jpg">
 
-    <!--
+    <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
 
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-        Tip 2: you can also add an image using data-image tag
-
-    -->
 
       <div class="sidebar-wrapper">
             <div class="logo">
                 <a href="http://www.creative-tim.com" class="simple-text">
-                   E-Reporter Approved Results
+                    E-Reporter: Approved Posts
                 </a>
             </div>
 
             <ul class="nav">
-                <li class="active">
+                <li>
                     <a href="dashboard.php">
                         <i class="pe-7s-graph"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li>
-                    <a href="ApprovedResults.php">
-                        <p>Approved Results</p>
+                
+                <li class="active">
+                    <a href="#">
+                        <i class="pe-7s-note2"></i>
+                        <p>Approved Posts</p>
                     </a>
                 </li>
+              
             </ul>
       </div>
     </div>
 
     <div class="main-panel">
-        <nav class="navbar navbar-default navbar-fixed">
+    <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
@@ -76,48 +74,110 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Dashboard</a>
+                    <a class="navbar-brand" href="#">Public Posts</a>
                 </div>
                 <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-left">
-                        <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-refresh"></i>
-                <p class="hidden-lg hidden-md">Dashboard</p>
-                            </a>
-                        </li>
-                    </ul>
 
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="#">
-                                <p>Log out</p>
-                            </a>
-                        </li>
-            <li class="separator hidden-lg"></li>
-                    </ul>
                 </div>
             </div>
         </nav>
 
-
         <div class="content">
             <div class="container-fluid">
-                
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Striped Table with Hover</h4>
+                                <p class="category">Here is a subtitle for this table</p>
+                            </div>
+                            <div class="content table-responsive table-full-width">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <th>ID</th>
+                                      <th>Public User</th>
+                                      <th>Polling Station</th>
+                                      <th>Candidate</th>
+                                      <th>Result</th>
+                                      <th>Percentage</th>
+                                      <th>Status(approved/unapproved)</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                          <td>1</td>
+                                          <td>Dakota Rice</td>
+                                          <td>$36,738</td>
+                                          <td>Niger</td>
+                                          <td>Oud-Turnhout</td>
+                                          <td>Dummy</td>
+                                          <td>Dummy2</td>
+                                        </tr>
+                                        <tr>
+                                          <td>2</td>
+                                          <td>Minerva Hooper</td>
+                                          <td>$23,789</td>
+                                          <td>Curaçao</td>
+                                          <td>Sinaai-Waas</td>
+                                          <td>Dummy</td>
+                                          <td>Dummy2</td>
+                                        </tr>
+                                        <tr>
+                                          <td>3</td>
+                                          <td>Sage Rodriguez</td>
+                                          <td>$56,142</td>
+                                          <td>Netherlands</td>
+                                          <td>Baileux</td>
+                                          <td>Dummy</td>
+                                          <td>Dummy2</td>
+                                        </tr>
+                                        <tr>
+                                          <td>4</td>
+                                          <td>Philip Chaney</td>
+                                          <td>$38,735</td>
+                                          <td>Korea, South</td>
+                                          <td>Overland Park</td>
+                                          <td>Dummy</td>
+                                          <td>Dummy2</td>
+                                        </tr>
+                                        <tr>
+                                          <td>5</td>
+                                          <td>Doris Greene</td>
+                                          <td>$63,542</td>
+                                          <td>Malawi</td>
+                                          <td>Feldkirchen in Kärnten</td>
+                                          <td>Dummy</td>
+                                          <td>Dummy2</td>
+                                        </tr>
+                                        <tr>
+                                          <td>6</td>
+                                          <td>Mason Porter</td>
+                                          <td>$78,615</td>
+                                          <td>Chile</td>
+                                          <td>Gloucester</td>
+                                          <td>Dummy</td>
+                                          <td>Dummy2</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
 
-                
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
 
-
-        <footer class="footer">
-            <div style="background-color: black; "class="container-fluid">
+         <footer class="footer" style="background: black;">
+            <div class="container-fluid">
                 
-                <p  class="copyright pull-left" >
-                    &copy; <script>document.write(new Date().getFullYear())</script> <a  href="#">E-Reporter</a>
+                <p class="copyright pull-center">
+                    &copy; <script>document.write(new Date().getFullYear())</script> 
+                    E-Reporter
                 </p>
             </div>
         </footer>
+
 
     </div>
 </div>
@@ -144,21 +204,5 @@
   <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
   <script src="assets/js/demo.js"></script>
 
-  <script type="text/javascript">
-      $(document).ready(function(){
-
-          demo.initChartist();
-
-          $.notify({
-              icon: 'pe-7s-gift',
-              message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
-
-            },{
-                type: 'info',
-                timer: 4000
-            });
-
-      });
-  </script>
 
 </html>

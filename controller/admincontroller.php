@@ -147,22 +147,26 @@ function createAdmn()
  	//
  	if (isset($_POST['updatebtn']))
  	{
+ 		//Get a database connection
+ 		$db= new DatabaseConnection;
+        $conn=$db->returnDBConnect();
  		//Check if the fields have data
- 		if(isset($_POST['mail']) & isset($_POST['fname']) & isset($_POST['mname']) & isset($_POST['lname']) & isset($_POST['password']) & isset($_POST['phone']) & isset($_POST['address']))
+ 		if(isset($_POST['mail'])  & isset($_POST['fname']) & isset($_POST['mname']) & isset($_POST['lname']) & isset($_POST['password']) & isset($_POST['phone']) & isset($_POST['address']))
  		{
  			//Get data from the fields
- 			$fname = $_POST['fname'];
- 			$mname = $_POST['mname'];
- 			$sname = $_POST['lname'];
- 			$pwd = $_POST['password'];
- 			$phone_no = $_POST['phone'];
- 			$mail = $_POST['mail'];
- 			$address = $_POST['address'];
+ 			$fname =mysqli_real_escape_string($conn, $_POST['fname']);
+ 			$mname = mysqli_real_escape_string($conn, $_POST['mname']);
+ 			$sname = mysqli_real_escape_string($conn, $_POST['lname']);
+ 			$pwd = mysqli_real_escape_string($conn, $_POST['password']);
+ 			$phone_no =mysqli_real_escape_string($conn, $_POST['phone']);
+ 			$mail = mysqli_real_escape_string($conn, $_POST['mail']);
+ 			$address = mysqli_real_escape_string($conn, $_POST['address']);
+ 			$usernm=mysqli_real_escape_string($conn, $_POST['myname']);
 
  			//Update user details
  			//Creating an object for the administrator class
             $adUser= new AdminUser;
- 			$adUser->updateUserProfile($fname, $mname, $sname, $mail, $pwd, $phone_no, $address);
+ 			$adUser->updateUserProfile($fname, $mname, $sname,$usernm, $mail, $pwd, $phone_no, $address);
  		}
  		else
  		{
@@ -170,9 +174,6 @@ function createAdmn()
  		}
  	}
  }
-
- //function that populates the fields of the user profile before an update occurs
- function populateProfile($id){}
  
 if(isset($_POST['adminReg']))
 {

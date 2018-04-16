@@ -32,6 +32,9 @@
 </head>
 <body>
 <?php include('../controller/admincontroller.php');?>
+<?php include('../Settings/initialize.php');?>
+<?php include('../controller/populateuserdatacontroller.php');?>
+
 <div class="wrapper">
     <div class="sidebar" data-color="blue" data-image="assets/img/sidebar-5.jpg">
 
@@ -119,15 +122,15 @@
                                     <div class="row">
                                         <div class="col-md-5">
                                             <div class="form-group">
-                                                <label>Username (disabled)</label>
-                                                <input type="text" name='usname'class="form-control" disabled placeholder="Company" value="Phyllis.Sitati ">
+                                                <label>Username (read-only)</label>
+                                                <input type="text" name="myname" class= "form-control" readonly="true" placeholder="Company" value="<?php echo $user_name?> ">
                                             </div>
                                         </div>
 
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Email address</label>
-                                                <input type="email" name="mail"class="form-control" placeholder="Email">
+                                                <input type="email" name="mail"class="form-control" placeholder="Email" value="<?php echo $email_add?> ">
                                             </div>
                                         </div>
                                     </div>
@@ -136,25 +139,25 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>First Name</label>
-                                                <input type="text" name="fname"class="form-control" placeholder="First Name" >
+                                                <input type="text" name="fname"class="form-control" placeholder="First Name" value="<?php echo $first_name?>" >
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Middle Name</label>
-                                                <input type="text" name= "mname"class="form-control" placeholder="Middle Name">
+                                                <input type="text" name= "mname"class="form-control" placeholder="Middle Name" value="<?php echo $middle_name?>">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Surname Name</label>
-                                                <input type="text" name="lname" class="form-control" placeholder="Last Name" >
+                                                <label>Surname </label>
+                                                <input type="text" name="lname" class="form-control" placeholder="Last Name" value="<?php echo $last_name?>">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Password</label>
-                                                <input type="password" name="password" class="form-control" placeholder="******">
+                                                <input type="password" name="password" class="form-control" placeholder="******" value="<?php echo $pass_word?>">
                                             </div>
                                         </div>
                                     </div>
@@ -163,11 +166,11 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Phone Number</label>
-                                                <input type="text" name="phone" class="form-control" placeholder="Phone Number" >
+                                                <input type="text" name="phone" class="form-control" placeholder="Phone Number" value="<?php echo $phone_number?>">
                                             </div>
                                             <div class="form-group">
                                                 <label>Address</label>
-                                                <input type="text" name="address"class="form-control" placeholder="Home Address" >
+                                                <input type="text" name="address"class="form-control" placeholder="Home Address" value="<?php echo $physical_address?>">
                                             </div>
                                         </div>
                                     </div>

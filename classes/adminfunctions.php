@@ -121,6 +121,9 @@ Class AdminUser
        	 	echo "no results were returned";
        	 }
     }
+
+
+    //Function that populates user data
 }
 
 
