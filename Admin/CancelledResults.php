@@ -88,8 +88,8 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Striped Table with Hover</h4>
-                                <p class="category">Here is a subtitle for this table</p>
+                                <h4 class="title"></h4>
+                                <p class="category"></p>
                             </div>
                             <div class="content table-responsive table-full-width">
                                 <table class="table table-hover table-striped">
@@ -99,64 +99,52 @@
                                       <th>Polling Station</th>
                                       <th>Candidate</th>
                                       <th>Result</th>
-                                      <th>Percentage</th>
-                                      <th>Status(approved/unapproved)</th>
+                                      <th>Status</th>
                                     </thead>
                                     <tbody>
                                         <tr>
                                           <td>1</td>
-                                          <td>Dakota Rice</td>
-                                          <td>$36,738</td>
-                                          <td>Niger</td>
-                                          <td>Oud-Turnhout</td>
-                                          <td>Dummy</td>
-                                          <td>Dummy2</td>
+                                          <td>Dakota Mary</td>
+                                          <td>PEACE INTERNATION PRIMARY SCHOOL</td>
+                                          <td>John  Dramani   Mahama
+                                          </td>
+                                          <td>74</td>
+                                          <td>Cancelled</td>
+                                          
                                         </tr>
                                         <tr>
                                           <td>2</td>
-                                          <td>Minerva Hooper</td>
-                                          <td>$23,789</td>
-                                          <td>Curaçao</td>
-                                          <td>Sinaai-Waas</td>
-                                          <td>Dummy</td>
-                                          <td>Dummy2</td>
+                                          <td>JAMES NYAGAKA</td>
+                                          <td>JOMORO HALF-ASSINI</td>
+                                          <td>Nana  Konadu  Agyeman-Rawlings
+                                          </td>
+                                          <td>102</td>
+                                          <td>Cancelled</td>
+                            
                                         </tr>
                                         <tr>
                                           <td>3</td>
-                                          <td>Sage Rodriguez</td>
-                                          <td>$56,142</td>
-                                          <td>Netherlands</td>
-                                          <td>Baileux</td>
-                                          <td>Dummy</td>
-                                          <td>Dummy2</td>
+                                          <td>
+                                            Leah Conteh
+                                          </td>
+                                          <td>PUBLIC SQUARE ASUKOLO
+                                          </td>
+                                          <td>THOMAS   ELLEAMO   YANKEY</td>
+                                          <td>87</td>
+                                          <td>Cancelled</td>
+                            
                                         </tr>
                                         <tr>
                                           <td>4</td>
                                           <td>Philip Chaney</td>
-                                          <td>$38,735</td>
-                                          <td>Korea, South</td>
-                                          <td>Overland Park</td>
-                                          <td>Dummy</td>
-                                          <td>Dummy2</td>
+                                          <td>MAGISTRATE COURT, HALF ASSINI
+</td>
+                                          <td>Ivor  Kobina  Greenstreet
+                                         </td>
+                                          <td>23</td>
+                                          <td>Cancelled</td>
                                         </tr>
-                                        <tr>
-                                          <td>5</td>
-                                          <td>Doris Greene</td>
-                                          <td>$63,542</td>
-                                          <td>Malawi</td>
-                                          <td>Feldkirchen in Kärnten</td>
-                                          <td>Dummy</td>
-                                          <td>Dummy2</td>
-                                        </tr>
-                                        <tr>
-                                          <td>6</td>
-                                          <td>Mason Porter</td>
-                                          <td>$78,615</td>
-                                          <td>Chile</td>
-                                          <td>Gloucester</td>
-                                          <td>Dummy</td>
-                                          <td>Dummy2</td>
-                                        </tr>
+                                        
                                     </tbody>
                                 </table>
 

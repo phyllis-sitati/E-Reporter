@@ -88,8 +88,8 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Striped Table with Hover</h4>
-                                <p class="category">Here is a subtitle for this table</p>
+                                <h4 class="title">This is a list of approved results</h4>
+                                <p class="category"></p>
                             </div>
                             <div class="content table-responsive table-full-width">
                                 <table class="table table-hover table-striped">
@@ -99,63 +99,74 @@
                                       <th>Polling Station</th>
                                       <th>Candidate</th>
                                       <th>Result</th>
-                                      <th>Percentage</th>
-                                      <th>Status(approved/unapproved)</th>
+                  
+                                      <th>Status</th>
                                     </thead>
                                     <tbody>
                                         <tr>
                                           <td>1</td>
-                                          <td>Dakota Rice</td>
-                                          <td>$36,738</td>
-                                          <td>Niger</td>
-                                          <td>Oud-Turnhout</td>
-                                          <td>Dummy</td>
-                                          <td>Dummy2</td>
+                                          <td>Doris Greene</td>
+                                          <td>R/C JSS BLK A HALF-ASSINI
+                                         </td>
+                                          <td>Nana  Akuffo  Addo
+                                         </td>
+                                          <td>110</td>
+                                          <td>Approved</td>
+                              
                                         </tr>
                                         <tr>
                                           <td>2</td>
-                                          <td>Minerva Hooper</td>
-                                          <td>$23,789</td>
-                                          <td>Curaçao</td>
-                                          <td>Sinaai-Waas</td>
-                                          <td>Dummy</td>
-                                          <td>Dummy2</td>
+                                          <td>Linda Adjei</td>
+                                          <td>OLD JOMORO DIST. ASSEMBLY HALL, HALF ASSINI
+                                          </td>
+                                          <td>JOSEPH  JUSTICE  KWAW
+                                          </td>
+                                          <td>64</td>
+                                          <td>Approved</td>
+                                          
                                         </tr>
                                         <tr>
                                           <td>3</td>
-                                          <td>Sage Rodriguez</td>
-                                          <td>$56,142</td>
-                                          <td>Netherlands</td>
-                                          <td>Baileux</td>
-                                          <td>Dummy</td>
-                                          <td>Dummy2</td>
+                                          <td>Nana Akuapome</td>
+                                          <td>ODORGONNOR MODEL SCH, AWOSHIE
+                                          </td>
+                                          <td>EMMANUEL   ARMAH-KOFI   BUAH
+                                         </td>
+                                          <td>34</td>
+                                          
+                                          <td>Approved</td>
                                         </tr>
                                         <tr>
                                           <td>4</td>
-                                          <td>Philip Chaney</td>
-                                          <td>$38,735</td>
-                                          <td>Korea, South</td>
-                                          <td>Overland Park</td>
-                                          <td>Dummy</td>
-                                          <td>Dummy2</td>
+                                          <td>Kofi Mensah </td>
+                                          <td>NIC, ANYAA
+                                          </td>
+                                          <td>Ivor  Kobina  Greenstreet
+                                          </td>
+                                          <td>52</td>
+                                          
+                                          <td>Approved</td>
                                         </tr>
                                         <tr>
                                           <td>5</td>
-                                          <td>Doris Greene</td>
-                                          <td>$63,542</td>
-                                          <td>Malawi</td>
-                                          <td>Feldkirchen in Kärnten</td>
-                                          <td>Dummy</td>
-                                          <td>Dummy2</td>
+                                          <td>Wafula Wambilianga</td>
+                                          <td>LORRY STATION NEW TOWN ABLEKUMA
+                                          </td>
+                                          <td>KWABENA OKYERE    DARKO-MENSAH
+</td>
+                                          <td>90</td>
+                                          
+                                          <td>Approved</td>
                                         </tr>
                                         <tr>
                                           <td>6</td>
-                                          <td>Mason Porter</td>
-                                          <td>$78,615</td>
-                                          <td>Chile</td>
-                                          <td>Gloucester</td>
-                                          <td>Dummy</td>
-                                          <td>Dummy2</td>
+                                          <td>Rashid Juma</td>
+                                          <td>VICOLIS SCHOOL OLUBU
+                                          </td>
+                                          <td>SOMEAH  ADDAE   EBENEZER
+                                          </td>
+                                          <td>67</td>
+                                          <td>Approved</td>
                                         </tr>
                                     </tbody>
                                 </table>

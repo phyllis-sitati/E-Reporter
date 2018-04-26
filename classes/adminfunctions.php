@@ -46,7 +46,7 @@ Class AdminUser
 	{
 		//Object of the Database class
        $edb= new DatabaseConnection;
-		$qry="INSERT INTO adminuser(FirstName, MiddleName, Surname, Username, Password,PhoneNumber, Email_Address,Physical_Address)VALUES('$fname', '$mname', '$lname','$username', '$password','$phone','$email','$physicalAdd')";
+		$qry="INSERT INTO adminuser(FirstName, MiddleName, Surname, Username, UPassword,PhoneNumber, Email_Address,Physical_Address)VALUES('$fname', '$mname', '$lname','$username', '$password','$phone','$email','$physicalAdd')";
 		//$edb->getConnection();
 		$conn=$edb->returnDBConnect();
 		//var_dump($conn);

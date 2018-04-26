@@ -32,6 +32,7 @@
 
 </head>
 <body>
+    <?//php require_once('../Login/logout.php');?>
 <div class="wrapper">
     <div class="sidebar" data-color="blue" data-image="assets/img/sidebar-5.jpg">
 
@@ -118,9 +119,9 @@
                     <ul class="nav navbar-nav navbar-right">
                         
                         <li>
-                            <a href="../Login/logout.php">
-                                <p>Log out</p>
-                            </a>
+                            <form action="../Login/logout.php">
+                            <input type="button" name="logout" value="LOG OUT" style="background: white; padding-top: 20px;">    
+                            </form>
                         </li>
 						<li class="separator hidden-lg"></li>
                     </ul>

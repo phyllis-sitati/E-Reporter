@@ -44,7 +44,7 @@
     	<div class="sidebar-wrapper">
             <div class="logo">
                 <a href="http://www.creative-tim.com" class="simple-text">
-                    E-Reporter: Admin User Profile
+                     <?php echo $message?>
                 </a>
             </div>
 
@@ -98,9 +98,9 @@
                     <ul class="nav navbar-nav navbar-right">
                         
                         <li>
-                            <a href="#">
-                                <p>Log out</p>
-                            </a>
+                            <form action="../Login/logout.php">
+                            <input type="button" name="logout" value="LOG OUT" style="background: white; padding-top: 20px;">    
+                            </form>
                         </li>
 						<li class="separator hidden-lg hidden-md"></li>
                     </ul>
@@ -199,7 +199,6 @@
 
     </div>
 </div>
-
 
 </body>
 

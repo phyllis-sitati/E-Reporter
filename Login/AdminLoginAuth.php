@@ -40,7 +40,7 @@ if (isset($_POST["logbtn"]))
         // verify the password and redirect user to admin dashboard
         if($row = mysqli_fetch_assoc($usExist))
         {
-          $dbpass=$row['Password'];
+          $dbpass=$row['UPassword'];
           //otherwise verify the password and redirect user to admin dashboard
           $verified=password_verify($psword, $dbpass);
           //check if they did not matched and send user back to login
@@ -56,7 +56,7 @@ if (isset($_POST["logbtn"]))
             session_start();
             $_SESSION['Admin_Id']= $row['Admin_Id'];
             $_SESSION['Username']= $row['Username'];
-            $_SESSION['pwd']= $row['Password'];
+            $_SESSION['pwd']= $row['UPassword'];
             $_SESSION['u_first']= $row['FirstName'];
             $_SESSION['u_middle']= $row['MiddleName'];
             $_SESSION['u_last']= $row['Surname'];

@@ -11,7 +11,7 @@ session_destroy();
 
 
 //redirect to the Admin Login Page
-header("Location: ../AdminLogin.php");
+header('Location: AdminLogin.php');
 
 ?>
 ?>

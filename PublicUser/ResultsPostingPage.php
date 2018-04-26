@@ -31,6 +31,9 @@
     <link href="../Admin/assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
 </head>
 <body>
+  <?php
+  //include('../controller/autoloadpstations.php');
+  ?>
   <div class="wrapper">
     <div class="sidebar" data-color="black" data-image="assets/img/sidebar-5.jpg">
 
@@ -70,7 +73,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Public User</a>
+                    <a class="navbar-brand" href="#">Welcome Public User</a>
                 </div>
                 <div class="collapse navbar-collapse">
 
@@ -82,7 +85,7 @@
         </nav>
         <div class="content">
             <div class="container-fluid">
-              <form action=" " method="post" enctype="multipart/form-data">
+              <form action="../controller/pUserPostingpgcontroller.php" method="post" enctype="multipart/form-data">
 
                   <div class="row">
                     <div class="col-md-8">
@@ -107,7 +110,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Surname Name</label>
+                                                <label>Surname </label>
                                                 <input type="text" name="surname" class="form-control" placeholder="Last Name" >
                                             </div>
                                         </div>
@@ -144,7 +147,13 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Polling Station</label>
-                                                <input type="text" name="pstation" class="form-control" placeholder="Name of Polling station" >
+                                                <input type="text" list="theStations" name="pstation" class="form-control" placeholder="Name of Polling station" >
+                                                <datalist id="theStations">
+                                                  <?php
+                                                  
+                                                  ?>
+                          
+                                               </datalist>
                                             </div>
                                         </div>
                                     </div>
@@ -198,6 +207,7 @@
                                       <th>Candidate Number</th>
                                       <th>Name</th>
                                       <th>Party</th>
+                                      <th>ID</th> 
                                       <th>Obtained Votes in Figures</th>
                                       <th>Obtained Votes in Words</th>
                                     </thead>
@@ -206,7 +216,7 @@
   require_once('../database/dbconnect.php');
 
 // Query selecting candidate information
-$sql = "SELECT FirstName, MiddleName , Surname, Party FROM candidate WHERE Category = 'Presidential'";
+$sql = "SELECT Candidate_Id, FirstName, MiddleName , Surname, Party FROM candidate WHERE Category = 'Presidential' AND Election_Year=2016";
 
 //Get a database connection
 $db = new DatabaseConnection;
@@ -233,13 +243,14 @@ if(mysqli_num_rows($result) > 0)
   {  ?>
     <tbody>
         <tr>
-            <th scope=”row”>
+            <th scope="row">
                 <?php echo $count; ?>
             </th>
             <td><?php echo $row['FirstName']. ' '. $row['MiddleName']. ' '. $row['Surname'];?> </td>
             <td><?php echo $row['Party'];?> </td>
-           <td><input type="text" id="row1_figures" name="fVotes" value=" "></td>
-            <td><input type="text" id="row1_words" name="wVotes" value= " "</td>
+            <td><input type="hidden" id="row1_figures" name="id[]" value="<?php echo $row['Candidate_Id']; ?>"></td>
+           <td><input type="text" id="row1_figures" name="figures[]" value=" "></td>
+            <td><input type="text" id="row1_words" name="words[]" value= " "</td>
         </tr>                                  
     </tbody>
 
@@ -271,6 +282,7 @@ mysqli_close($conn);
                                         <th>Candidate Number</th>
                                       <th>Name</th>
                                       <th>Party</th>
+                                      <th>ID</th> 
                                       <th>Votes Obtained In figures</th>
                                       <th>Votes Obtained in words</th>
                                     </thead>
@@ -280,7 +292,7 @@ mysqli_close($conn);
   require_once('../database/dbconnect.php');
 
 // Query selecting candidate information
-$sql = "SELECT FirstName, MiddleName , Surname, Party FROM candidate WHERE Category = 'Parliamentary'";
+$sql = "SELECT Candidate_Id, FirstName, MiddleName , Surname, Party FROM candidate /*LEFT OUTER JOIN pollingstation ON candidate.Constituency= pollingstation.Constituency*/ WHERE Category = 'Parliamentary' AND Election_Year=2016";
 
 //Get a database connection
 $db = new DatabaseConnection;
@@ -312,8 +324,9 @@ if(mysqli_num_rows($result) > 0)
             </th>
             <td><?php echo $row['FirstName']. ' '. $row['MiddleName']. ' '. $row['Surname'];?> </td>
             <td><?php echo $row['Party'];?> </td>
-           <td><input type="text" id="row2_figures" name="fVotes2" value=" "></td>
-            <td><input type="text" id="row2_words" name="wVotes2" value= " "</td>
+            <td><input type="hidden" id="row1_figures" name="id[]" value="<?php echo $row['Candidate_Id']; ?>"></td>
+           <td><input type="text" id="row2_figures" name="figures[]" value=" "></td>
+            <td><input type="text" id="row2_words" name="words[]" value= " "</td>
         </tr>                                  
     </tbody>
 

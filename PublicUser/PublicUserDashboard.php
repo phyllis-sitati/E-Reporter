@@ -102,7 +102,7 @@
       <div class="container wow fadeIn">
         <div class="section-header">
           <h3 class="section-title">Welcome to the Public User Dashboard</h3>
-          <p><h4>You can post results of the polling station you are currently at. You can also view current results<h4></p>
+          <p><h4>You can post results of the polling station you are currently at. You can also view current election  results<h4></p>
           <hr><hr><hr><hr>
         </div>
         <div class="row">

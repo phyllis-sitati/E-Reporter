@@ -1,165 +1,116 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>E-Reporter: Results Viewing Page</title>
-  <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/png" href="../PublicUser/assets/img/favicon.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
- <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="keywords">
-  <meta content="" name="description">
+  <title>E-Reporter: View Current Results</title>
 
-  <!-- Favicons -->
-  <link href="../img/favicon.png" rel="icon">
-  <link href="../img/apple-touch-icon.png" rel="apple-touch-icon">
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700" rel="stylesheet">
 
-  <!-- Bootstrap CSS File -->
-  <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap core CSS     -->
+    <link href="../Admin/assets/css/bootstrap.min.css" rel="stylesheet" />
 
-  <!-- Libraries CSS Files -->
-  <link href="../lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="../lib/animate/animate.min.css" rel="stylesheet">
+    <!-- Animation library for notifications   -->
+    <link href="../Admin/assets/css/animate.min.css" rel="stylesheet"/>
 
-  <!-- Main Stylesheet File -->
-  <link href="../css/style.css" rel="stylesheet">
+    <!--  Light Bootstrap Table core CSS    -->
+    <link href="../Admin/assets/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet"/>
 
-  <!-- =======================================================
-    Theme Name: Regna
-    Theme URL: https://bootstrapmade.com/regna-bootstrap-onepage-template/
-    Author: BootstrapMade.com
-    License: https://bootstrapmade.com/license/
-  ======================================================= -->
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="../Admin/assets/css/demo.css" rel="stylesheet" />
+
+
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <link href="../Admin/assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+
 </head>
-
 <body>
 
-  <!--==========================
-  Header
-  ============================-->
-  <div>
-    <header id="header" style="background-color:#404040; ">
-      <div class="container">
+<div class="wrapper">
+    <div class="sidebar" data-color="purple" data-image="assets/img/sidebar-5.jpg">
 
-        <div id="logo" class="pull-left">
-          <!--<a href="#hero"><img src="img/logo.png" alt="" title="" /></img></a>-->
-          <!-- Uncomment below if you prefer to use a text logo -->
-          <h1><a href="#hero">E-REPORTER</a></h1>
-      </div>
+    <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
 
-      <nav id="nav-menu-container">
-        <ul class="nav-menu">
-          <li class="menu-active"><a href="index.html">Home</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#team">Team</a></li>
-          <li class="menu-has-children"><a href="">Drop Down</a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="menu-has-children"><a href="#">Drop Down 2</a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-              <li><a href="#">Drop Down 5</a></li>
+
+      <div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="http://www.creative-tim.com" class="simple-text">
+                    E-REPORTER: view results
+                </a>
+            </div>
+
+            <ul class="nav">
+                <li>
+                    <a href="PublicUserDashboard.php">
+                        <i class="pe-7s-graph"></i>
+                        <p>Public Dashboard</p>
+                    </a>
+                </li>
+                
+                <li class="active">
+                    <a href="#">
+                        <i class="pe-7s-map-marker"></i>
+                        <p>Results</p>
+                    </a>
+                </li>
             </ul>
-          </li>
-          <li><a href="#contact">Contact Us</a></li>
-        </ul>
-      </nav><!-- #nav-menu-container -->
-       
-    </div>
-  </header><!-- #header -->
-
-  <!--==========================
-    Hero Section
-  ============================-->
-  </div>
-  <div>
-     <main id="main">
-      <hr><hr>
-
-    <!--==========================
-      Services Section
-    ============================-->
-    <section id="maps">
-      <div class="container wow fadeIn">
-        
-
-      </div>
-    </section><!-- #services -->
-
-     
-    
-
-  </main>
-  </div> 
-  
- 
-
-  <!--==========================
-    Footer
-  ============================-->
-  <footer id="footer">
-    <div class="footer-top">
-      <div class="container">
-
       </div>
     </div>
 
-    <div class="container">
-      <div class="copyright">
-        &copy; Copyright <strong>E-Reporter 2018</strong>. All Rights Reserved
-      </div>
-      <div class="credits">
-        <!--
-          All the links in the footer should remain intact.
-          You can delete the links only if you purchased the pro version.
-          Licensing information: https://bootstrapmade.com/license/
-          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Regna
-        -->
-        Bootstrap Templates by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
+    <div class="main-panel">
+    <nav class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Results</a>
+                </div>
+            </div>
+        </nav>
+
+        <div id="map"></div>
+
     </div>
-  </footer><!-- #footer -->
+</div>
 
-  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-
-  <!-- JavaScript Libraries -->
-  <script src="../lib/jquery/jquery.min.js"></script>
-  <script src="../lib/jquery/jquery-migrate.min.js"></script>
-  <script src="../lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../lib/easing/easing.min.js"></script>
-  <script src="../lib/wow/wow.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8HeI8o-c1NppZA-92oYlXakhDPYR7XMY"></script>
-
-  <script src="../lib/waypoints/waypoints.min.js"></script>
-  <script src="../lib/counterup/counterup.min.js"></script>
-  <script src="../lib/superfish/hoverIntent.js"></script>
-  <script src="../lib/superfish/superfish.min.js"></script>
-
-  <!-- Contact Form JavaScript File -->
-  <script src="contactform/contactform.js"></script>
-
-  <!-- Template Main Javascript File -->
-  <script src="../js/main.js"></script>
-  <!--<script type="text/Javascript" src="js/googlemap.js"></script>-->
 
 </body>
+
+        <!--   Core JS Files   -->
+    <script src="../Admin/assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
+  <script src="../Admin/assets/js/bootstrap.min.js" type="text/javascript"></script>
+
+  <!--  Charts Plugin -->
+  <script src="../Admin/assets/js/chartist.min.js"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="../Admin/assets/js/bootstrap-notify.js"></script>
+
+    <!--  Google Maps Plugin    -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9dlV6d8PUneNl2DEQGtm2X_BxYxxbNLU&callback=initMap"
+  type="text/javascript"></script>
+
+    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+  <script src="../Admin/assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
+
+  <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
+  <script src="../Admin/assets/js/demo.js"></script>
+
+    <script>
+        $().ready(function(){
+            demo.initGoogleMaps();
+        });
+    </script>
+<!--AIzaSyA9dlV6d8PUneNl2DEQGtm2X_BxYxxbNLU-->
 </html>
